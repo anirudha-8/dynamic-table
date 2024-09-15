@@ -1,31 +1,73 @@
 # 📅 Dynamic Table : React Internship Assignment ⚛️
 
-## --> [🔥Live Demo]()
+Welcome to the **Dynamic DataTable Project**! 🚀 This project displays artwork data fetched from an API, allowing you to select rows across multiple pages. It also includes an overlay panel for easy multi-row selection across pages. Perfect for managing and interacting with tabular data! ✨
 
-## Task Breakdown
+## --> [🔥Live Demo](https://gleeful-cendol-5aaac7.netlify.app/)
 
-1. Create React App:
+## 🎨 Features
 
-    - Use Vite to create the React app.
+- ✅ **Checkboxes** for selecting rows individually.
 
-    - The app must use TypeScript, not JavaScript.
+- 🔄 **Pagination** with 12 records per page.
 
-2. Add Prime React Table:
+- 🔢 **Select rows across multiple pages** with the overlay panel (e.g., select 20 rows spanning 2 pages).
 
-    - Use the PrimeReact DataTable component to display the table.
+- 🗂️ Displays fields like `Title`, `Place of Origin`, `Artist`, and more.
 
-    - Initially fetch data for the first page and display it in the table.
+- 🛠️ Built with **React**, **PrimeReact**, and **Axios** for API handling.
 
-3. Add Pagination:
+## 🚀 Getting Started
 
-    - Implement server-side pagination.
+Follow these instructions to get the project up and running on your local machine. 🖥️
 
-    - Ensure data is fetched from the server each time the user changes the page.
+### 📝 Prerequisites
 
-4. Add Row Selection with Checkboxes:
+Make sure you have the following tools installed:
 
-    - Allow users to select rows (either individually or select all).
+- **Node.js** (v14 or higher) 🌐
+- **npm** or **yarn** for dependency management 📦
 
-    - Add a custom row selection panel (as explained in the video).
+### 🔧 Installation Steps
 
-    - Row selections should persist when changing between pages (both selected and deselected rows).
+1. **Clone the repository** 🌀:
+
+    ```bash
+    git clone <your-repo-url>
+    cd dynamic-table
+    ```
+
+2. **Install dependencies** 📥:
+
+    ```bash
+    npm install
+    ```
+
+3. **Run the project locally** 🚀:
+
+    ```bash
+    npm run dev
+    ```
+
+## 🖼️ API Information
+
+The project fetches data from the Art Institute of Chicago API. The API is paginated, and we show 12 records per page. The fields displayed are:
+
+- Title: The artwork's title 🖋️
+
+- Place of Origin: Where the artwork was created 🌍
+
+- Artist: The artist who made the artwork 🎨
+
+- Inscriptions: Any inscriptions on the artwork ✒️
+
+- Date Start: When the artwork was started 📅
+
+- Date End: When the artwork was completed 📅
+
+### API Endpoint
+
+`<https://api.artic.edu/api/v1/artworks?page=1>`
+
+## 💬 Feedback and Contributions
+
+We love to hear your feedback! 🗣️ If you encounter any issues or have suggestions to improve the project, feel free to open an issue or submit a pull request.
