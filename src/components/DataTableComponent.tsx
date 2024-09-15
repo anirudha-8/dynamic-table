@@ -20,14 +20,13 @@ const DataTableComponent: React.FC = () => {
 	const [loading, setLoading] = useState(false);
 	const [first, setFirst] = useState(0);
 	const [totalRecords, setTotalRecords] = useState(0);
-	const [rows, setRows] = useState(12); // 12 records per page
-	const [selectCount, setSelectCount] = useState(0); // Track how many rows to select from the overlay
-	const op = useRef<OverlayPanel>(null); // Reference to OverlayPanel
+	const [rows, setRows] = useState(12);
+	const [selectCount, setSelectCount] = useState(0);
+	const op = useRef<OverlayPanel>(null);
 	const [selectedRowIds, setSelectedRowIds] = useState<Set<number>>(
 		new Set()
-	); // Global storage for selected row IDs
+	);
 
-	// Fetch data from the API
 	const fetchData = async (page: number, rowsPerPage: number) => {
 		setLoading(true);
 		try {
@@ -43,45 +42,38 @@ const DataTableComponent: React.FC = () => {
 		setLoading(false);
 	};
 
-	// Fetch data when the page or rows per page changes
 	useEffect(() => {
 		const page = first / rows + 1;
 		fetchData(page, rows);
 	}, [first, rows]);
 
-	// Handle row selection change (with checkboxes) for both selecting and deselecting rows
 	const onSelectionChange = (e: { value: Artwork[] }) => {
-		const newSelectedIds = new Set<number>(selectedRowIds); // Copy the existing selected rows
+		const newSelectedIds = new Set<number>(selectedRowIds);
 
-		const currentPageSelectedIds = e.value.map((row) => row.id); // Get currently selected rows on the current page
+		const currentPageSelectedIds = e.value.map((row) => row.id);
 
-		// Check for deselected rows
 		data.forEach((row) => {
 			if (!currentPageSelectedIds.includes(row.id)) {
-				newSelectedIds.delete(row.id); // Remove deselected rows
+				newSelectedIds.delete(row.id);
 			}
 		});
 
-		// Add selected rows
 		currentPageSelectedIds.forEach((id) => newSelectedIds.add(id));
 
-		setSelectedRowIds(newSelectedIds); // Update global selected rows
+		setSelectedRowIds(newSelectedIds);
 	};
 
-	// Handle page change
 	const onPageChange = (e: DataTablePageEvent) => {
 		setFirst(e.first);
 		setRows(e.rows);
 	};
 
-	// Check if the row is already selected (for maintaining selection state)
 	const isSelected = (row: Artwork) => {
 		return selectedRowIds.has(row.id);
 	};
 
-	// Select multiple rows across pages
 	const selectMultipleRows = async (count: number) => {
-		const selected = new Set<number>(selectedRowIds); // Copy current selected row IDs
+		const selected = new Set<number>(selectedRowIds);
 		let remainingToSelect = count;
 		let page = first / rows + 1;
 
@@ -99,7 +91,7 @@ const DataTableComponent: React.FC = () => {
 		}
 
 		setSelectedRowIds(selected);
-		op.current?.hide(); // Close the overlay after selecting
+		op.current?.hide();
 	};
 
 	return (
@@ -112,29 +104,22 @@ const DataTableComponent: React.FC = () => {
 				totalRecords={totalRecords}
 				onPage={onPageChange}
 				loading={loading}
-				selection={data.filter((row) => isSelected(row))} // Filter data to match selected rows
+				selection={data.filter((row) => isSelected(row))}
 				onSelectionChange={onSelectionChange}
 				dataKey="id"
 				lazy
 				selectionMode="multiple"
 			>
-				{/* Checkbox Column for row selection */}
 				<Column
 					selectionMode="multiple"
 					headerStyle={{ width: "3em" }}
-				></Column>
-
-				{/* First Column with the overlay trigger */}
-				<Column
-					field="title"
 					header={
 						<>
 							<i
 								className="pi pi-filter"
 								style={{ cursor: "pointer" }}
 								onClick={(e) => op.current?.toggle(e)}
-							></i>{" "}
-							Title
+							></i>
 							<OverlayPanel ref={op}>
 								<div>
 									<p>Enter number of rows to select:</p>
@@ -163,6 +148,8 @@ const DataTableComponent: React.FC = () => {
 						</>
 					}
 				></Column>
+
+				<Column field="title" header="Title"></Column>
 				<Column
 					field="place_of_origin"
 					header="Place of Origin"
