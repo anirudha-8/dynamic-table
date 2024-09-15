@@ -81,11 +81,11 @@ const DataTableComponent: React.FC = () => {
 			const response = await axios.get(
 				`https://api.artic.edu/api/v1/artworks?page=${page}&limit=${rows}`
 			);
-			const artworks = response.data.data;
+			const artworks: Artwork[] = response.data.data; // Explicitly type the response data
 
 			// Get the rows to select from the current page
-			const toSelect = artworks.slice(0, remainingToSelect);
-			toSelect.forEach((row) => selected.add(row.id));
+			const toSelect: Artwork[] = artworks.slice(0, remainingToSelect);
+			toSelect.forEach((row: Artwork) => selected.add(row.id)); // Explicitly type the row parameter
 			remainingToSelect -= toSelect.length;
 			page++;
 		}
