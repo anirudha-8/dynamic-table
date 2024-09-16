@@ -2,7 +2,7 @@
 
 Welcome to the **Dynamic DataTable Project**! 🚀 This project displays artwork data fetched from an API, allowing you to select rows across multiple pages. It also includes an overlay panel for easy multi-row selection across pages. Perfect for managing and interacting with tabular data! ✨
 
-## --> [🔥Live Demo](https://gleeful-cendol-5aaac7.netlify.app/)
+## --> [🔥Live Demo](https://dynamic-table-brown.vercel.app/)
 
 ## 🎨 Features
 
